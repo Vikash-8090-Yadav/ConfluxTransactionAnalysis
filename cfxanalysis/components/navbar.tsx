@@ -135,83 +135,14 @@ export default function Navbar() {
             <Link href="/" legacyBehavior>
               <a className="flex-shrink-0">
                 <h1 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-pink-600">
-                  OneTicket
+                  CFXanalyst
                 </h1>
               </a>
             </Link>
-            <div className="hidden lg:block">
-              <div className="flex items-baseline space-x-6">
-                
-                <NavLink to="/sellnft">Create Event</NavLink>
-                <NavLink to="/dashboard">DASHBOARD</NavLink>
-              </div>
-            </div>
+            
           </div>
           <div className="hidden lg:flex items-center space-x-6">
-            {accountAddress ? (
-              <div className="flex items-center">
-                <span className="text-white text-lg mr-4">{truncateAddress(accountAddress)}</span>
-                <div className="relative">
-                  <button
-                    onMouseEnter={() => {
-                      setIsDropdownOpen(true)
-                      setIsHovered(true)
-                    }}
-                    onMouseLeave={() => setIsHovered(false)}
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className={`w-10 h-10 rounded-full bg-gradient-to-r from-pink-500 to-yellow-500 flex items-center justify-center text-white font-bold text-lg focus:outline-none overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-105 ${
-                      isHovered ? 'ring-2 ring-white' : ''
-                    }`}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                  </button>
-                  {isDropdownOpen && (
-                    <div 
-                      className="absolute right-0 mt-2 w-64 bg-gradient-to-br from-purple-900 to-indigo-900 rounded-md shadow-lg py-1 z-10"
-                      onMouseEnter={() => setIsHovered(true)}
-                      onMouseLeave={() => setIsHovered(false)}
-                    >
-                      <div className="px-4 py-3 text-sm text-gray-200 border-b border-gray-700 flex justify-between items-center">
-                        <span className="font-medium">Account</span>
-                        <a 
-                          href={getEtherscanLink(accountAddress)} 
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                          className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                          </svg>
-                        </a>
-                      </div>
-                      <div className="px-4 py-3 text-sm text-gray-200 border-b border-gray-700">
-                        <p className="font-medium text-yellow-400">Address</p>
-                        <p className="truncate">{accountAddress}</p>
-                      </div>
-                      <div className="px-4 py-3 text-sm text-gray-200 border-b border-gray-700">
-                        <p className="font-medium text-yellow-400">Balance</p>
-                        <p>{parseFloat(balance).toFixed(4)} CFX</p>
-                      </div>
-                      <button
-                        onClick={handleLogout}
-                        className="block w-full text-left px-4 py-2 text-sm text-gray-200 hover:bg-purple-800 transition duration-150 ease-in-out"
-                      >
-                        Logout
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ) : (
-              <button
-                onClick={handleLogin}
-                className="bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
-              >
-                Connect Wallet
-              </button>
-            )}
+            
           </div>
           <div className="lg:hidden flex items-center">
             <button
