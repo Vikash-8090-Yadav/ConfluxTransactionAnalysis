@@ -139,63 +139,9 @@ export default function Navbar() {
                 </h1>
               </a>
             </Link>
-            
-          </div>
-          <div className="hidden lg:flex items-center space-x-6">
-            
-          </div>
-          <div className="lg:hidden flex items-center">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-3 rounded-md text-white hover:text-yellow-300 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-            >
-              <span className="sr-only">Open main menu</span>
-              {!isOpen ? (
-                <svg className="block h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              ) : (
-                <svg className="block h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              )}
-            </button>
           </div>
         </div>
       </div>
-
-      {isOpen && (
-        <div className="lg:hidden">
-          <div className="px-4 pt-2 pb-3 space-y-2">
-            <NavLink to="/Market">HOME</NavLink>
-            <NavLink to="/sellnft">Create Event</NavLink>
-            <NavLink to="/dashboard">DASHBOARD</NavLink>
-           
-          </div>
-          <div className="pt-4 pb-4 border-t border-gray-700">
-            <div className="flex items-center px-5">
-              {accountAddress ? (
-                <div className="flex items-center space-x-4">
-                  <span className="text-white text-lg">{truncateAddress(accountAddress)}</span>
-                  <button
-                    onClick={handleLogout}
-                    className="bg-red-500 hover:bg-red-600 text-white text-lg font-medium py-2 px-6 rounded-full transition duration-150 ease-in-out"
-                  >
-                    Logout
-                  </button>
-                </div>
-              ) : (
-                <button
-                  onClick={handleLogin}
-                  className="bg-gradient-to-r from-pink-500 to-yellow-500 hover:from-pink-600 hover:to-yellow-600 text-white text-lg font-bold py-3 px-8 rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl"
-                >
-                  Connect Wallet
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </nav>
   )
 }
