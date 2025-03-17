@@ -41,7 +41,6 @@ const networks = {
 export default function Navbar() {
   const [accountAddress, setAccountAddress] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  const [loading, setLoading] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [balance, setBalance] = useState('0')
   const [isHovered, setIsHovered] = useState(false)
@@ -63,43 +62,41 @@ export default function Navbar() {
   }
 
   const handleLogin = async () => {
-    setLoading(true)
-    
-    if (typeof (window as any).ethereum === "undefined") {
+    if (typeof (window as any).ethereum !== 'undefined') {
+      const web3 = new Web3((window as any).ethereum)
+
+      const chainId = await web3.eth.getChainId()
+      const CfxTestnetChainId = parseInt(networks.CFXTestnet.chainId, 16)
+
+      console.log(parseInt(chainId.toString()))
+      console.log("The neo testnet chain id is", parseInt(chainId.toString()))
+
+      const chainId1 = parseInt(chainId.toString())
+      
+      if (chainId1 !== CfxTestnetChainId) {
+        await (window as any).ethereum!.request({
+          method: "wallet_addEthereumChain",
+          params: [{
+            ...networks["CFXTestnet"]
+          }]
+        })
+      }
+      const accounts = await web3.eth.requestAccounts()
+
+      console.log(accounts)
+      const Address = accounts[0]
+      if (typeof window !== 'undefined') {
+        localStorage.setItem("filWalletAddress", Address)
+      }
+
+      console.log(Address)
+      setAccountAddress(Address)
+      fetchBalance(Address)
+
+      window.location.reload()
+    } else {
       console.log("Please install the metamask")
     }
-    let web3 = new Web3((window as any).ethereum)
-
-    const chainId = await web3.eth.getChainId()
-    const NeoTestnetChainId = parseInt(networks.CFXTestnet.chainId, 16)
-
-    console.log(parseInt(chainId.toString()))
-    console.log("The neo testnet chain id is", parseInt(chainId.toString()))
-
-    const chainId1 = parseInt(chainId.toString())
-    
-    if (chainId1 !== NeoTestnetChainId) {
-      await (window as any).ethereum.request({
-        method: "wallet_addEthereumChain",
-        params: [{
-          ...networks["CFXTestnet"]
-        }]
-      })
-    }
-    const accounts = await web3.eth.requestAccounts()
-
-    console.log(accounts)
-    const Address = accounts[0]
-    if (typeof window !== 'undefined') {
-      localStorage.setItem("filWalletAddress", Address)
-    }
-
-    console.log(Address)
-    setAccountAddress(Address)
-    fetchBalance(Address)
-
-    setLoading(false)
-    window.location.reload()
   }
 
   const handleLogout = () => {
