@@ -27,48 +27,6 @@ Conflux Transaction Analysis is a web application that provides real-time insigh
 
 ## Getting Started
 
-```
-
-cfxanalysis/
-├── app/                      # Next.js App Router directory
-│   ├── layout.tsx            # Root layout component
-│   ├── page.tsx              # Home page component
-│   └── [other routes]/       # Additional page routes
-│
-├── components/               # Reusable React components
-│   ├── ui/                   # UI components (buttons, cards, etc.)
-│   ├── charts/               # Data visualization components
-│   ├── layout/               # Layout components (header, footer, etc.)
-│   └── transaction/          # Transaction-specific components
-│
-├── public/                   # Static assets
-│   ├── images/               # Image files
-│   ├── icons/                # Icon files
-│   └── fonts/                # Font files
-│
-├── styles/                   # CSS and styling files
-│   └── globals.css           # Global styles
-│
-├── lib/                      # Utility functions and shared code
-│   ├── api.ts                # API client for Conflux Network
-│   ├── utils.ts              # Utility functions
-│   └── types.ts              # TypeScript type definitions
-│
-├── hooks/                    # Custom React hooks
-│   ├── useTransactions.ts    # Hook for fetching transaction data
-│   └── useWallet.ts          # Hook for wallet integration
-│
-├── .gitignore                # Git ignore file
-├── eslint.config.mjs         # ESLint configuration
-├── next.config.ts            # Next.js configuration
-├── package.json              # Project dependencies and scripts
-├── package-lock.json         # Lock file for npm
-├── postcss.config.mjs        # PostCSS configuration
-├── tsconfig.json             # TypeScript configuration
-└── README.md                 # Project documentation
-
-```
-
 ### Prerequisites
 
 - Node.js (v16 or later)
