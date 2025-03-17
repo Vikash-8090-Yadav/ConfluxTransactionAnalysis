@@ -85,10 +85,10 @@ export default function Navbar() {
               }]
             });
           } catch (error) {
-            console.error("Failed to add Ethereum chain:", error);
+            alert("Failed to add Ethereum chain:");
           }
         } else {
-          console.error("Ethereum provider not detected. Please install MetaMask or a compatible wallet.");
+          alert("Ethereum provider not detected. Please install MetaMask or a compatible wallet.");
         }
       }
 
@@ -107,7 +107,7 @@ export default function Navbar() {
 
       window.location.reload()
     } else {
-      console.log("Please install the metamask")
+      alert("Please install the metamask")
     }
   }
 
