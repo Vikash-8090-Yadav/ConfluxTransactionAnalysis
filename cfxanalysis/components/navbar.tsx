@@ -10,7 +10,7 @@ interface Ethereum {
   request?: (args: { method: string; params?: Array<any> }) => Promise<any>;
 }
 
-interface Window {
+interface ExtendedWindow extends Window {
   ethereum?: Ethereum;
 }
 
@@ -54,16 +54,16 @@ export default function Navbar() {
   }, [])
 
   const fetchBalance = async (address: string) => {
-    if (typeof (window as any).ethereum !== 'undefined') {
-      const provider = new ethers.providers.Web3Provider((window as any).ethereum)
+    if (typeof (window as ExtendedWindow).ethereum !== 'undefined') {
+      const provider = new ethers.providers.Web3Provider((window as ExtendedWindow).ethereum as any)
       const balance = await provider.getBalance(address)
       setBalance(ethers.utils.formatEther(balance))
     }
   }
 
   const handleLogin = async () => {
-    if (typeof (window as any).ethereum !== 'undefined') {
-      const web3 = new Web3((window as any).ethereum)
+    if (typeof (window as ExtendedWindow).ethereum !== 'undefined') {
+      const web3 = new Web3((window as ExtendedWindow).ethereum as any)
 
       const chainId = await web3.eth.getChainId()
       const CfxTestnetChainId = parseInt(networks.CFXTestnet.chainId, 16)
@@ -74,7 +74,7 @@ export default function Navbar() {
       const chainId1 = parseInt(chainId.toString())
       
       if (chainId1 !== CfxTestnetChainId) {
-        await (window as any).ethereum!.request({
+        await (window as ExtendedWindow).ethereum!.request({
           method: "wallet_addEthereumChain",
           params: [{
             ...networks["CFXTestnet"]
