@@ -62,7 +62,7 @@ export default function Navbar() {
   }
 
   const handleLogin = async () => {
-    if (typeof (window as ExtendedWindow).ethereum !== 'undefined') {
+    if ((window as ExtendedWindow).ethereum) {
       const web3 = new Web3((window as ExtendedWindow).ethereum as any)
 
       const chainId = await web3.eth.getChainId()
@@ -74,13 +74,25 @@ export default function Navbar() {
       const chainId1 = parseInt(chainId.toString())
       
       if (chainId1 !== CfxTestnetChainId) {
-        await (window as ExtendedWindow).ethereum!.request({
-          method: "wallet_addEthereumChain",
-          params: [{
-            ...networks["CFXTestnet"]
-          }]
-        })
+        const ethereum = (window as ExtendedWindow).ethereum;
+      
+        if (ethereum && typeof ethereum.request === "function") {
+          try {
+            await ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [{
+                ...networks["CFXTestnet"]
+              }]
+            });
+          } catch (error) {
+            console.error("Failed to add Ethereum chain:", error);
+          }
+        } else {
+          console.error("Ethereum provider not detected. Please install MetaMask or a compatible wallet.");
+        }
       }
+
+
       const accounts = await web3.eth.requestAccounts()
 
       console.log(accounts)
