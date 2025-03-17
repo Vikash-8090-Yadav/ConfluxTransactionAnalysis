@@ -27,6 +27,8 @@ Conflux Transaction Analysis is a web application that provides real-time insigh
 
 ## Getting Started
 
+```
+
 cfxanalysis/
 ├── app/                      # Next.js App Router directory
 │   ├── layout.tsx            # Root layout component
@@ -64,6 +66,8 @@ cfxanalysis/
 ├── postcss.config.mjs        # PostCSS configuration
 ├── tsconfig.json             # TypeScript configuration
 └── README.md                 # Project documentation
+
+```
 
 ### Prerequisites
 
