@@ -429,7 +429,7 @@ export default function Home() {
                           </td>
                           <td className="px-4 py-3 text-sm text-blue-600 dark:text-blue-400 font-medium">
                             <a
-                              href={`https://testnet.confluxscan.io/tx/${tx.hash}`}
+                              href={`https://evmtestnet.confluxscan.io/tx/${tx.hash}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="hover:underline"
